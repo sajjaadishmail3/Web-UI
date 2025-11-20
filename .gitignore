@@ -1,0 +1,21 @@
+# Build output
+target/
+bin/
+
+# IDE files
+*.iml
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment files
+.env
+
+# Maven wrapper
+.mvn/

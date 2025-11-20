@@ -1,72 +1,88 @@
-Book Catalogue Web UI (Spring Boot 2 + Thymeleaf)
+Monorepo: Book Catalogue — Web-UI and Management-BE
 
-This project is the Web UI layer for a multi-tier book catalogue solution. It provides a browser-based interface to list, add, edit, and delete books. The UI integrates with a separate Management service via a JAX-RS (Jersey) client.
+This repository is a Maven multi-module project (monorepo) with two Spring Boot apps:
+
+- Web-UI — Spring Boot 2 + Thymeleaf web application
+- Management-BE — Spring Boot 2 REST API with H2 in-memory database
+
+Structure
+- pom.xml (parent aggregator: packaging=pom)
+- Web-UI/ … (UI module)
+- Management-BE/ … (Backend API module)
 
 Requirements
 - Java 8 (1.8)
 - Maven 3.6+
-- A running Management service exposing a REST API at ${MANAGEMENT_API_BASE_URL} (default http://localhost:8081/api).
-  - Expected endpoints:
-    - GET    /api/books -> list of books
-    - GET    /api/books/{id} -> single book
-    - POST   /api/books -> create book
-    - PUT    /api/books/{id} -> update book
-    - DELETE /api/books/{id} -> delete book
 
-Tech Stack
-- Spring Boot 2 (Web, Validation, Thymeleaf)
-- Thymeleaf templates for server-side HTML rendering
-- JAX-RS Client using Jersey + Jackson for JSON
-- Packaged as an executable jar with dependencies
+Get the code
+- Clone (HTTPS):
+```
+git clone https://github.com/<your-org-or-user>/<your-repo>.git
+cd <your-repo>
+```
+- Or clone (SSH):
+```
+git clone git@github.com:<your-org-or-user>/<your-repo>.git
+cd <your-repo>
+```
 
-Configure
-You can configure the Management API base URL via either environment variable or application properties:
-- Environment variable: MANAGEMENT_API_BASE_URL (recommended)
-- Property in src/main/resources/application.properties: management.api.base-url
+Pull the latest changes
+```
+git pull
+```
 
-Defaults to http://localhost:8081/api if not set.
+Build all modules
+```
+mvn clean package
+```
 
-Build
-1. mvn clean package
+Build one module (and its dependencies)
+```
+mvn -pl Web-UI -am clean package
+mvn -pl Management-BE -am clean package
+```
 
-The jar will be created at target/book-ui.jar.
-
-Run
+Run everything locally (recommended order)
+1) Start Management-BE (API on port 8081)
+- Windows PowerShell:
+```
+cd Management-BE
+./run-windows.ps1
+```
 - Linux/macOS:
-  - ./run-linux.sh
-- Windows (PowerShell):
-  - ./run-windows.ps1
+```
+cd Management-BE
+chmod +x run-linux.sh
+./run-linux.sh
+```
 
-You may pass the Management API URL as an argument, for example:
-- Linux/macOS: ./run-linux.sh http://localhost:8081/api
-- Windows PowerShell: ./run-windows.ps1 http://localhost:8081/api
+2) Start Web-UI (UI on port 8080)
+- Windows PowerShell:
+```
+cd Web-UI
+./run-windows.ps1
+```
+- Linux/macOS:
+```
+cd Web-UI
+chmod +x run-linux.sh
+./run-linux.sh
+```
 
-Alternatively, set the environment variable:
-- Linux/macOS
-  - export MANAGEMENT_API_BASE_URL=http://localhost:8081/api
-  - java -jar target/book-ui.jar
-- Windows PowerShell
-  - $env:MANAGEMENT_API_BASE_URL = "http://localhost:8081/api"
-  - java -jar target/book-ui.jar
+Defaults and configuration
+- API base URL: http://localhost:8081/api
+- Web-UI calls the API above by default. You can override via env var `MANAGEMENT_API_BASE_URL` or property `management.api.base-url`.
 
-The application starts on http://localhost:8080. Navigate to /books.
-
-UI Features
-- List all books
-- Add a new book
-- Edit an existing book
-- Delete a book
-
-Notes
-- The Book fields used by the UI: id, title, author, isbn, publishedDate (yyyy-MM-dd). Ensure the Management service uses compatible JSON for LocalDate (ISO-8601).
-- If your Management service differs in field names or paths, adjust Book and BookManagementClient accordingly.
-
-Packaging as Executable Jar
-This project uses spring-boot-maven-plugin. Run mvn package to produce a fat jar at target/book-ui.jar that can be executed with java -jar.
+Quick test
+- After both services start:
+  - Open the UI: http://localhost:8080/books
+  - API health (example): http://localhost:8081/api/books
 
 Troubleshooting
-- 404/500 errors when loading books usually indicate the Management service is not reachable or has different endpoints. Verify MANAGEMENT_API_BASE_URL and that the service is running.
-- Template errors on date inputs: ensure publishedDate serializes/deserializes as ISO date (yyyy-MM-dd). This project configures Jersey Jackson with JavaTimeModule.
+- Ensure the correct JDK is used: `java -version` should report 1.8.
+- Ports 8080 (UI) and 8081 (API) must be free. Change ports via `application.properties` if needed.
+- If your IDE doesn’t detect both modules, re-import the Maven project from the root `pom.xml`.
 
-License
-MIT (or adjust as needed)
+Module READMEs
+- See `Web-UI/README.md` for UI details.
+- See `Management-BE/README.md` for API details.

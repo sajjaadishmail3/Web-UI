@@ -1,7 +1,5 @@
 package saj.techie.managementbe.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import saj.techie.managementbe.model.Book;
 
 import java.util.List;
