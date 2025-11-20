@@ -1,0 +1,6 @@
+saj\techie\catalgueui\CatalogueUiApplication.class
+saj\techie\catalgueui\config\JerseyObjectMapperProvider.class
+saj\techie\catalgueui\controller\BookController.class
+saj\techie\catalgueui\client\BookManagementClient.class
+saj\techie\catalgueui\service\BookService.class
+saj\techie\catalgueui\model\Book.class
