@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [[ ${1:-} != "--skip-build" ]]; then
+# Ensure the script runs from the module directory
+cd "$(dirname "$0")"
+
+if [[ "${1:-}" != "--skip-build" ]]; then
   mvn -q -DskipTests clean package
 fi
 
@@ -10,5 +13,3 @@ if [[ -z "$jar" ]]; then
   echo "Jar not found in target" >&2
   exit 1
 fi
-
-exec java -jar "$jar"
