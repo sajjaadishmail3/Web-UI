@@ -10,8 +10,8 @@ cd Web-UI
 ```
 - Or, if you don’t have the repo yet (see root `README.md` for full clone options):
 ```
-git clone https://github.com/<your-org-or-user>/<your-repo>.git
-cd <your-repo>/Web-UI
+git clone https://github.com/sajjaadishmail3/Web-UI.git
+cd Web-UI/Web-UI
 ```
 
 #### Requirements

@@ -17,12 +17,12 @@ Requirements
 Get the code
 - Clone (HTTPS):
 ```
-git clone https://github.com/<your-org-or-user>/<your-repo>.git
+git clone https://github.com/sajjaadishmail3/Web-UI.git
 cd <your-repo>
 ```
 - Or clone (SSH):
 ```
-git clone git@github.com:<your-org-or-user>/<your-repo>.git
+git clone git@github.com:sajjaadishmail3/Web-UI.git
 cd <your-repo>
 ```
 
