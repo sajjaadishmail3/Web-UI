@@ -17,7 +17,17 @@
             <a class="btn btn-primary" th:href="@{/books/new}">Add Book</a>
             </div>
 
-            <div th:if="${successMessage}" class="alert alert-success" role="alert" th:text="${successMessage}">
+            <script>
+                // Auto-hide after 3 seconds
+                setTimeout(function() {
+                  let alert = document.getElementById('alert-success');
+                  if (alert) {
+                    alert.classList.remove('show');
+                  }
+                }, 5000);
+            </script>
+
+            <div th:if="${successMessage}" id="alert-success" class="alert alert-success fade show" role="alert" th:text="${successMessage}">
                 Operation successful!
             </div>
 
