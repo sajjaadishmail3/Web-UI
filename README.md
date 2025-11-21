@@ -14,6 +14,46 @@ Requirements
 - Java 8 (1.8)
 - Maven 3.6+
 
+Install Git
+
+Before cloning the repository, ensure Git is installed on your system:
+
+- **Windows**  
+  1. Download Git from [git-scm.com](https://git-scm.com/download/win).  
+  2. Run the installer and follow the setup wizard (default options are fine).  
+  3. Verify installation:  
+     ```powershell
+     git --version
+     ```
+
+- **Linux (Debian/Ubuntu)**  
+  ```bash
+  sudo apt update
+  sudo apt install git
+  git --version
+  ```
+
+- **Linux (Fedora/CentOS/RHEL)**  
+  ```bash
+  sudo dnf install git
+  git --version
+  ```
+
+- **macOS**  
+  - Install via Homebrew:  
+    ```bash
+    brew install git
+    git --version
+    ```  
+  - Or install Xcode Command Line Tools:  
+    ```bash
+    xcode-select --install
+    ```
+---
+
+Would you like me to **rewrite your full README with this Git section integrated** so you have a polished version ready to drop into your repo?
+
+
 Get the code
 - Clone (HTTPS):
 ```
